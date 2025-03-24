@@ -1,2 +1,2 @@
 # SKN13_mingyu
-SK networks ai 13기 캠프 수업
+SK networks ai 캠프 13기
