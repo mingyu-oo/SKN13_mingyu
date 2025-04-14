@@ -12,7 +12,7 @@ st.set_page_config(page_title="Layout&Cache", layout="wide")
 
 col1, col2 = st.columns(2)
 # print(type(col1))
-col11, col12 = col1.columns(2)
+col11, col12 = col1.columns(2)  # col1을 또 나눈거임.
 col11.title("제목")
 col11.header("중제목")
 col11.subheader("소제목")
@@ -26,7 +26,7 @@ col12.write("### 소제목")
 col12.write("일반글")
 
 
-st.divider()
+st.divider()     # 줄 슥 그어서 나눠줌
 st.title("환율")
 col1, col2, col3, col4 = st.columns(4)
 col1.metric(label="달러USD", value="1,228 원", delta="-12.00 원")
@@ -37,7 +37,7 @@ col4.metric(label="일본JPY(100엔)", value="958.63 원", delta="-7.44 원")
 # with 문을 이용하면 with block 안의 내용은 그 컬럼내에 출력된다.
 st.title("With Block이용")
 col1, col2 = st.columns(2)
-with col1:
+with col1: # col1~, col1~ 안하고 묶어서 탁탁 코딩하면 됨.
     st.header("col1")
     st.write("안녕하세요.")
     
@@ -54,16 +54,16 @@ with col2:
 # @st.cache_data
 #   - data를 반환하는 함수에 사용
 #   - 파이썬 value, DataFrame
-# @st.cache.resource
+# @st.cache_resource
 #   - resource를 반환하는 함수에 사용
-#   - 머신러닝/딥러닝 모델, Database 연결등
+#   - 머신러닝/딥러닝 모델, Database 연결 등
 #  
 # Database에 저장할 수있는 객체이면 st.cache_data, 아니면 st.cache_resource
 #########################################################
 
 
 # 데이터를 제공하는 함수.
-@st.cache_data
+@st.cache_data # << 이거 주석처리하면 계속 불러오는거라 겟데이터 찍히는거임
 def get_data():
     print("get_data")
     df = pd.read_csv("data/boston_housing.csv")

@@ -14,11 +14,12 @@ st.set_page_config(page_title="✏️Input Widget✏️", layout="wide")
 ################################################################
 st.subheader("text 입력")
 name_value = st.text_input("이름")
-st.write("이름: " + name_value)
+if name_value:
+    st.write("이름: " + name_value)
 
 st.subheader("여러줄 텍스트 입력")
 info = st.text_area("정보", height=200)  #height 단위: pixcel
-st.write(info.replace("\n", "<br>"), unsafe_allow_html=True)
+st.write(info.replace("\n", "<br>"), unsafe_allow_html=True)  #br 넣어줘야함.
 
 st.subheader("Number Input")
 num = st.number_input("값")
@@ -44,7 +45,7 @@ st.subheader("일반 버튼")
 
 ##### 일반버튼: click 하면 True 반환
 bool_value = st.button("인사말 출력")
-if not bool_value:
+if not bool_value:                   # 버튼뒤에 이런 조건문을 넣어줘야함.
     st.write("아직 클릭 안됨")
 else:
     if name_value:
@@ -118,7 +119,7 @@ upload_file_list = st.file_uploader(
 )
 st.write("업로드 파일개수:", len(upload_file_list))
 for uploaded_file in upload_file_list:
-    bytes_data = uploaded_file.getvalue()
+    bytes_data = uploaded_file.getvalue()    # bytes 객체로 가져옴.
     with open(os.path.join(save_dir, uploaded_file.name), "wb") as fw:
         fw.write(bytes_data)
 

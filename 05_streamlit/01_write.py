@@ -26,7 +26,7 @@ import streamlit as st
 
 
 # 타이틀 입력
-st.title('이것은 타이틀 입니다')
+st.title('이것은 타이틀 입니다:100:🤣')
 
 # 이모티콘 입력
 ## streamlit 지원 이모지: https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
@@ -42,6 +42,7 @@ st.subheader('이것은 subheader 입니다 :100:')
 # 일반 텍스트 입력
 st.text('일반 텍스트입니다. 👌👌')
 st.text(10)
+st.text(True)
 
 # 캡션  입력
 st.caption('이것은 캡션입니다.:rainbow:')
