@@ -1,6 +1,10 @@
 create user playdata@localhost identified by '1111'; # 문자열은 다 '' 해줘야하지만 숫자는 꼭해줘야함
 create user playdata@'%' identified by '1111'; # 문자열은 다 '' 해줘야하지만 숫자는 꼭해줘야함
 
+create user SKN13_1st_4Team@'%' identified by '1111'; # 1차 프로젝트용 계정
+create user SKN13_2nd_2Team@'%' identified by '1111'; # 2차 프로젝트용 계정
+
+
 -- 00_ddl.sql
 -- 생성된 계정 확인
 select user, host from mysql.user;
@@ -16,9 +20,11 @@ select user, host from mysql.user;
 -- grant 부여할 권한 on 대상 테이블 to 권한부여할 계정
 grant all privileges on *.* to 'playdata'@'localhost';
 grant all privileges on *.* to 'playdata'@'%';
+grant all privileges on *.* to 'SKN13_1st_4Team'@'%';
+grant all privileges on *.* to 'SKN13_2nd_2Team'@'%';
 -- *:DB.*:table
 
-
+use brp;
 
 ##################################################
 # DB 생성
@@ -82,3 +88,6 @@ values('id-400', '4', '한석봉', null, 'rox@c.com', 5); -- Error Code: 3819. C
 select * from member;
 
 desc member;
+
+use hr;
+select * from message_store

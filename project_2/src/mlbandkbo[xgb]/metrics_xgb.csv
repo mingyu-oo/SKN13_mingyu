@@ -1,0 +1,2 @@
+﻿Best Params,MAE,MSE,R2
+"{'colsample_bytree': 1.0, 'learning_rate': 0.01, 'max_depth': 7, 'n_estimators': 500, 'subsample': 0.8}",1.203294277191162,3.045285940170288,0.8714966177940369

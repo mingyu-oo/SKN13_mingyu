@@ -1,0 +1,2 @@
+﻿Best Params,MAE,MSE,R2
+"{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 300}",0.9915906513457896,2.130106927242483,0.9115871756182563
