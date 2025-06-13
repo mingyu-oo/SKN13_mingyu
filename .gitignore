@@ -1,4 +1,13 @@
+# ignore case customization
+12_Huggingface_lib/models/nsmc/model.safetensors
 api_key_json
+datasets/
+dataset/
+FashionMNIST/
+*.pt
+ko_new.zip
+.env
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -174,3 +183,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# 대용량 파일 무시
+09_딥러닝_기본/datasets/cifar-10-python.tar.gz
+09_딥러닝_기본/images.tar.gz
+10_NLP_전처리/data/petitions_corpus.txt
+예복습/
