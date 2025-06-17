@@ -8,6 +8,7 @@ FashionMNIST/
 ko_new.zip
 .env
 *.zip
+vector_store/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
