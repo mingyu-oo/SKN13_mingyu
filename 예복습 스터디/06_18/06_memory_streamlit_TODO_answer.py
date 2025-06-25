@@ -41,6 +41,7 @@ def get_chain():
     # SQLite 엔진 생성 (로컬 DB)
     engine = create_engine("sqlite:///chat_history.sqlite")
     # RunnableWithMessageHistory로 체인 구성
+    # 얘는 session id를 받아야함
     chain = RunnableWithMessageHistory(
         runnable=runnable,
         get_session_history = lambda session_id : SQLChatMessageHistory(session_id = session_id, connection = engine),
