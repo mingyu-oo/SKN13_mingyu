@@ -6,9 +6,12 @@ dataset/
 FashionMNIST/
 *.pt
 ko_new.zip
-.env
+*.env
 *.zip
 vector_store/
+data/
+project_3/chroma_card_db/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

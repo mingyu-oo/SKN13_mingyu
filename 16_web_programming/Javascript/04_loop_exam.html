@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h2>반복문 예제</h2>
+        <script>
+            function whileExam(num) {
+                // 빈 array에 받은 num 10개 저장.
+                let array = []      // 빈 배열
+                let cnt = 0         // 초기식 (조건에서 사용할 변수)
+
+                while (cnt < 10)    // 조건식
+                {
+                    array.push(num);    // array에 값 추가
+                    cnt++;              // 증감식
+                }
+                console.log(array)
+            }
+            // whileExam(10)
+
+            function forExam(num) {
+                let array = []
+
+                for (let cnt = 0; cnt < 10; cnt++){
+                    array.push(num + cnt)
+                    console.log(array)
+                }
+            }
+            // forExam(10)
+
+            function doWhileExam() {
+                // 1번은 반드시 함. 1회 이상 반복
+                array = [];     // input이 짝수면 저장, 홀수면 종료.
+                do {
+                    num = parseInt(prompt("number"))
+                    if (num % 2 != 0){
+                        break;      // 반복문 이탈.
+                    }
+                    array.push(num)
+                } while (true);
+                console.log(array)
+            }
+            // doWhileExam()
+
+            function forInExam() {
+                array = ["a", "b", "c", "d", "e"]   // array index(0~)로 값을 조회
+                for (idx in array) {
+                    console.log(idx, array[idx])
+                }
+            }
+            forInExam()
+            
+        </script>
+    </body>
+</html>

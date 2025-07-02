@@ -1,0 +1,16 @@
+/* css\style.css */
+
+.margin {
+    margin:20px;    /* 외곽 여백 */
+}
+
+.padding{
+    padding-left:30px;
+    padding-right:30px;
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+.border{
+    border: 1px solid skyblue;
+}

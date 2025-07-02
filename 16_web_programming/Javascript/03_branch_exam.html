@@ -1,0 +1,62 @@
+<!-- branch_exam.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h2>조건문 예제</h2>
+        <script>
+        function IfExam() {
+            num_str = prompt("숫자를 입력하세요");  // input값을 string으로 반환
+            num = parseInt(num_str)     // 정수형으로 변환
+            if (num > 0) {
+                alert(`${num}은 양수인데용 ?`);
+                console.log({num})
+            }else if (num < 0) {
+                alert(`${num}은 음수인데용 ?`);
+                console.log({num})
+            }else {
+                alert("0이잖아용!!");
+                console.log({num})
+            }
+        }
+        // IfExam();
+
+        function IfExam2() {
+            flag = confirm("진챠 삭제할거에영,,?")
+            if (flag) { // True : 확인, False : 취소
+                alert("삭제했어영,,,")
+            }else {
+                alert("휴 살아남아따")
+            }
+        }
+        // IfExam2()
+
+        function switchExam() {
+            month = parseInt(prompt("select month"))
+            console.log(month)
+            // if (month === 1 || month === 3 || month === 5) {
+            //     alert("31일까지 있어용ㅎ")
+            // }
+            switch (month) {
+                case 1: case 3: case 5: case 7:case 8: case 10:case 12:
+                    alert("31일까지 있습니다.");
+                    break;
+                case 4: case 6: case 9: case 11:
+                    alert("30일까지 있슴둥")
+                    break;
+                case 2:
+                    alert("28 or 29일까아지~")
+                    break;
+                default:
+                    alert(`${month}는 month가 아니자나용..`)
+            }
+        }
+        switchExam()
+        
+        </script>
+    </body>
+</html>

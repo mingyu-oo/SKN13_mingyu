@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h2>함수 예제</h2>
+
+        <script>
+            //1. 함수 정의
+            function hello1(){
+                alert("방가워연")
+            }
+            // hello1()
+            // hello1()
+
+            //2. parameter(매개변수) 가 있는 함수
+            function hello2(name, age) {
+                info = `이름 : ${name}, 나이 : ${age}`;
+                alert(info)
+            }
+            // hello2("괴도",20)
+            // hello2("키드")      // 이름 : 키드, 나이 : undefined
+            // hello2(age = 30)    // 이름 : 30, 나이 : undefined
+            
+            //3. 기본값이 있는 파라미터.
+            function hello3(name ="김춘봉", age = 0) {
+                info = `이름 : ${name}, 나이 : ${age}`;
+                console.log(info)
+            }
+            // hello3("으아악", 30)
+            // hello3("돈캐수")
+            
+            //4. 반환값이 있는 함수
+            function hello4(name, age) {
+                info = `이름 : ${name}, 나이 : ${age}`;
+                return info;    // return 생략 -> undefined가 return
+            }
+            info = hello4("침착맨", 3045)
+            // alert(info)
+
+            //5. Rest Parameter (파이썬-가변인자 *args)
+            function hello5(name, age, ...other) {
+                console.log(name, age);
+                console.log(other);
+            }
+            // hello5("노트북", 232, "미나리","미나리 삼겹살",10,23,323)
+
+            //6. 함수 리터럴.
+            hello6 = function (name) {
+                console.log(name)
+            }
+            // hello6("임영웅")
+
+            //7. 함수를 argument로 전달.
+            function calc(func) {
+                let num1 = 10;
+                let num2 = 20;
+                let result = func(num1, num2);
+                console.log("계산결과 : ", result)
+            }
+            calc(function(n1, n2){
+                return n1 + n2;
+            })
+            
+            calc(function(n1, n2){
+                n1 += 10
+                n2 += 20
+                return n1 - n2
+            })
+
+            //8. 화살표 함수
+            let arrowFunc1 = (num1, num2) => num1 * num2    // 변수 = 함수
+            console.log(arrowFunc1(100,2))
+
+            let arrowFunc2 = num => num * 100;  // parameter가 1개면 ( ) 생략가능
+            console.log(arrowFunc2(20))
+
+            let arrowFunc3 = (num1, num2) => {
+                num1 += 2
+                num2 *= 3
+                return num1 + num2
+            }
+            console.log(arrowFunc3(20,30))
+
+
+            calc((n1, n2) => n1 / n2)
+            calc((n1, n2) => {
+                return (n1 % n2)
+            })
+
+        </script>
+    </body>
+</html>
