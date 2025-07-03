@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h2>Javascript Object 예제</h2>
+        <script>
+            const person = {    // const는 person이지 안의 instance들은 const가 아님.
+                name: "홍길동",
+                age: 20,
+                isMarriage: false,
+                "job name": "회사원",
+                hobby: ["게임", "스포츠"],
+                go: function (place) {
+                    alert(place + "에 간다.");
+                },
+                getInfo: function () {
+                    // method에서 다른 property들(instance 변수 / instance method)에 접근
+                    // this.변수명, this.method()
+                    // this : mothod를 소유한 객체를 가르킴. (~= self)
+                    info = `이름: ${this.name}, 나이: ${this.age}`;
+                    return info;
+                },
+            };
+            
+            // console.log(person.name, person['name'])
+            // console.log(person['job name'])
+
+            // p_info = person.getInfo()
+            // console.log(p_info)
+            // console.log(person.isMarriage?"기혼":"미혼")
+
+            // person['job name'] = "사업"
+            // console.log(person['job name'])
+            // person.isMarriage = true
+            // console.log(person)
+            // console.log(person.isMarriage?"기혼":"미혼")
+
+            // for (let key in person){
+            //     console.log(key);
+            // }
+            
+            console.log("=========구조분해할당")
+            let arr = [1, 2, 3, 4, 5]
+            let [v1, v2, v3, v4, v5, v6=0] = arr
+            console.log(v1, v2, v3, v4, v5, v6)
+            let {name, age} = person
+            console.log(name, age)
+            // name property의 value를 p_name 변수에 저장.
+            let {name:p_name, age:p_age, hobby:p_hobby, hobby} = person
+            console.log(p_name, p_age, p_hobby, hobby)
+        </script>
+    </body>
+</html>

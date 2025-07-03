@@ -16,7 +16,7 @@
             // hello1()
             // hello1()
 
-            //2. parameter(매개변수) 가 있는 함수
+            //2. parameter(매개변수)가 있는 함수
             function hello2(name, age) {
                 info = `이름 : ${name}, 나이 : ${age}`;
                 alert(info)
@@ -24,6 +24,7 @@
             // hello2("괴도",20)
             // hello2("키드")      // 이름 : 키드, 나이 : undefined
             // hello2(age = 30)    // 이름 : 30, 나이 : undefined
+            // hello2()            // 이름 : undefined, 나이 : undefined
             
             //3. 기본값이 있는 파라미터.
             function hello3(name ="김춘봉", age = 0) {
@@ -32,6 +33,7 @@
             }
             // hello3("으아악", 30)
             // hello3("돈캐수")
+            // hello3(20)
             
             //4. 반환값이 있는 함수
             function hello4(name, age) {
@@ -49,7 +51,7 @@
             // hello5("노트북", 232, "미나리","미나리 삼겹살",10,23,323)
 
             //6. 함수 리터럴.
-            hello6 = function (name) {
+            hello6 = function(name) {
                 console.log(name)
             }
             // hello6("임영웅")
@@ -72,15 +74,15 @@
             })
 
             //8. 화살표 함수
-            let arrowFunc1 = (num1, num2) => num1 * num2    // 변수 = 함수
+            let arrowFunc1 = (num1, num2) => num1 * num2    // 변수(arrowFunc1) = 함수((num1, num2) => num1 * num2)
             console.log(arrowFunc1(100,2))
 
             let arrowFunc2 = num => num * 100;  // parameter가 1개면 ( ) 생략가능
             console.log(arrowFunc2(20))
 
             let arrowFunc3 = (num1, num2) => {
-                num1 += 2
-                num2 *= 3
+                num1 += 5
+                num2 -= 10
                 return num1 + num2
             }
             console.log(arrowFunc3(20,30))
@@ -90,6 +92,9 @@
             calc((n1, n2) => {
                 return (n1 % n2)
             })
+
+            let func = () => console.log("hello")
+            func()
 
         </script>
     </body>

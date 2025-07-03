@@ -11,7 +11,7 @@
         <script>
         function IfExam() {
             num_str = prompt("숫자를 입력하세요");  // input값을 string으로 반환
-            num = parseInt(num_str)     // 정수형으로 변환
+            num = parseInt(num_str)     // 정수만 뽑아옴
             if (num > 0) {
                 alert(`${num}은 양수인데용 ?`);
                 console.log({num})
@@ -51,7 +51,7 @@
                 case 2:
                     alert("28 or 29일까아지~")
                     break;
-                default:
+                default:    // else 느낌.
                     alert(`${month}는 month가 아니자나용..`)
             }
         }

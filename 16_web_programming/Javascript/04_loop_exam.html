@@ -13,8 +13,7 @@
                 let array = []      // 빈 배열
                 let cnt = 0         // 초기식 (조건에서 사용할 변수)
 
-                while (cnt < 10)    // 조건식
-                {
+                while (cnt < 10) {  // 조건식
                     array.push(num);    // array에 값 추가
                     cnt++;              // 증감식
                 }
@@ -25,7 +24,7 @@
             function forExam(num) {
                 let array = []
 
-                for (let cnt = 0; cnt < 10; cnt++){
+                for (let cnt = 0; cnt < 10; cnt++){     // 초기식, 조건식, 증감식을 한번에
                     array.push(num + cnt)
                     console.log(array)
                 }
@@ -38,13 +37,25 @@
                 do {
                     num = parseInt(prompt("number"))
                     if (num % 2 != 0){
-                        break;      // 반복문 이탈.
+                        break;      // 반복문(do while 문) 이탈.
                     }
                     array.push(num)
                 } while (true);
                 console.log(array)
             }
             // doWhileExam()
+
+            function doWhileExam2() {
+                // 1번은 반드시 함. 1회 이상 반복
+                array = [];     // input이 짝수면 저장, 홀수면 종료.
+                do {
+                    num = parseInt(prompt("number"))
+                    array.push(num)
+                } while (num % 2 == 0);
+                console.log(array)
+            }
+            // doWhileExam2()   
+            // while에 조건을 주면 if문을 뺄 수 있을 것 같아서 진행, 하지만 마지막 홀수가 push되는 문제.
 
             function forInExam() {
                 array = ["a", "b", "c", "d", "e"]   // array index(0~)로 값을 조회
