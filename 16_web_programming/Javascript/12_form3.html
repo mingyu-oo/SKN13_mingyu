@@ -12,9 +12,9 @@
         <div class="container mt-2">
             <form name="f1" action="/add" onsubmit="return checkSel()">
                 <input type="submit" value="전송" class="btn btn-primary mb-2"/><br />
-                <select name="phone" onchange="get_item()" class="form-select form-select-lg">
+                <select name="phone" onchange="get_item()" class="form-select form-select-lg"> <!-- multiple onchage로 다중 선택 가능-->
                     <option value="default">번호선택</option>
-                    <option>010</option>
+                    <option selected value="ㅋ">010</option>
                     <option>011</option>
                     <option>016</option>
                     <option>019</option>
@@ -24,22 +24,23 @@
         <script>
             function get_item() {
 
-                let sel = document.f1.phone;
-                let selIndex = sel.selectedIndex;
+                let sel = document.f1.phone;        // <select>
+                let selIndex = sel.selectedIndex;   // 선택된 <option>의 index
                 console.log("선택된 index:", selIndex);
                 
-                let optionList = sel.options;
-
-                for (let idx in optionList) {
-                    console.log(optionList[idx].value, optionList[idx].text)
-                }
+                let optionList = sel.options;       // option객체들을 array로 담아줌
+                // // <option value = value>text</option>
+                // for (let idx in optionList) {
+                //     console.log(optionList[idx].value, optionList[idx].text)
+                // }
                 let selValue = sel.options[selIndex].value
-                console.log("선택된 option의 value:", selValue);
+                let selText = sel.options[selIndex].text
+                console.log("선택된 option의 value, text:", selValue, selText);
 
             }
 
             function checkSel() {
-                if (document.f1.phone.selectedIndex === 0) {
+                if (document.f1.phone.selectedIndex === 0) {    // 번호선택을 선택한 상태로 전송을 누르면
                     alert("번호를 선택하세요");
                     return false;
                 }

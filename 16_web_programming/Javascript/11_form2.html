@@ -14,23 +14,23 @@
             <form name="f1">
                 취미를 선택하세요 (1개 이상선택)
                 <div>
-                    <input type="checkbox" name="hobby" id="reading" value="독서" class="form-check-input"/>
+                    <input type="radio" name="hobby" id="reading" value="독서" class="form-check-input" />
                     <label for="reading">독서</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="hobby" value="음악" class="form-check-input" />
+                    <input type="radio" name="hobby" value="음악" class="form-check-input" />
                     <lael>음악</lael>
                 </div> 
                 <div>
-                    <input type="checkbox" name="hobby" value="운동" class="form-check-input" />
+                    <input type="radio" name="hobby" value="운동" class="form-check-input" />
                     <label>운동</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="hobby" value="게임" class="form-check-input" />
+                    <input type="radio" name="hobby" value="게임" class="form-check-input" />
                     <label>게임</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="hobby" value="영화" class="form-check-input" />
+                    <input type="radio" name="hobby" value="영화" class="form-check-input" />
                     <label>영화</label>
                 </div>
                 <div>
@@ -46,10 +46,14 @@
 
         <script>
             function checkHobby() {
-                hobbyList = document.f1.hobby;
-                let cnt = 0;
-                for (let idx in hobbyList) {
+                // hobby 이름의 node가 여러 개 조회 -> Node array로 반환
+                // node들을 array에 담아서 반환
+                hobbyList = document.f1.hobby;  // [cb, cb, cb, cb, cb]
+                console.log(hobbyList)
 
+                let cnt = 0;    // check된 checkbox 개수
+                for (let idx in hobbyList) {
+                    // checkbox.checked : true-check 상태, false-uncheck 상태
                     if (hobbyList[idx].checked) {
                         cnt++; 
                     }
@@ -59,7 +63,6 @@
                     return;
                 }
                 alert("전송-form.submit()");
-                
             }
 
             function checkAll() {

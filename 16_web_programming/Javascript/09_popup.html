@@ -14,6 +14,7 @@
 
         <ul class="list-group">
             <li class="list-group-item">
+                <!-- 링크 누르면 javascript 코드 showAddress를 실행시키겠단 뜻 -->
                 <a href='javascript:showAddress("111-111", "서울시 금천구")' class="btn">111-111 서울시 금천구</a>
             </li>
             <li class="list-group-item">
@@ -26,6 +27,7 @@
 
         <script>
             function showAddress(zipcode, address) {
+                // opener : 현재 창이 팝업일 때 이 팝업을 띄운 부모창의 window
                 opener.document.f1.zipcode.value = zipcode;
                 opener.document.f1.address.value = address;
                 window.close();

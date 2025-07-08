@@ -11,27 +11,32 @@
     <body>
         <div class="container mt-3">
             <form name="f1">
-                <label for="id" class="'form-label">ID:</label>
+                <label for="id" class="'form-label">ID</label>
                 <span style="color: red" id="id_error"></span>
-                <input type="text" name="id" id="id" required class="form-control"/>
+                <input type="text" name="id" id="id" required class="form-control" placeholder="ID" autofocus="True" />
                 
-                <label for="pwd" class="form-label">패스워드:</label>
+                <label for="pwd" class="form-label">패스워드</label>
                 <input type="password" name="password" id="pwd" class="form-control" required />
 
                 <div class="btn-group mt-1">
                     <input type="button" onclick="sendForm(1)" value="등록" class="btn btn-primary" />
                     <input type="button" onclick="sendForm(2)" value="수정" class="btn btn-primary" />
+                    <input type="reset" value="초기화" class="btn btn-primary">
                 </div>
             </form>
         </div>
         <script>
+            function formReset() {
+                document.f1.reset();
+            }
+
             function sendForm(flag) {
-                let f1 = document.f1; 
+                let f1 = document.f1;       // <form name = "f1">
                 if (flag === 1) {
-                    f1.action = "/add";
-                    f1.method = "post";
+                    f1.action = "/add";     // <form name = "f1" action = "/add">
+                    f1.method = "post";     // <form name = "f1" action = "/add" method = "post">
                 }else if (flag === 2) {
-                    f1.action = "/update";
+                    f1.action = "/update";  // <form name = "f1" action = "/add" method = "get"> 주소뒤에 id, password가 붙음.
                 }
 
                 let id_value = f1.id.value;
@@ -47,7 +52,6 @@
                     f1.password.focus();
                     return;
                 }
-
                 f1.submit()
             }
         </script>

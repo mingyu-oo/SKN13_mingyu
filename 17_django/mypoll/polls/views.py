@@ -1,10 +1,10 @@
 # view들을 구현
 # view : 하나의 user 요청을 처리하는 func
 
-from urllib import response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
+from .models import Question, Choice # 모델 클래스들 import
 
 # Create your views here.
 
@@ -36,3 +36,92 @@ def welcome_poll(request):
     # response : HttpResponse(polls/welcome.html 처리 내용)
     print("="*30, type(response))
     return response
+
+
+
+##########################################
+# 설문 질문 목록을 출력하는 View
+#
+# url: polls/list
+# view함수: list
+# template: polls/templates/polls/list.html
+
+def list(request):
+    # DB에서 question들을 조회
+    q_list = Question.objects.all().order_by("-pub_date")
+
+    # render() : template 실행해서 그결과로 HttpResponse를 반환하는 func
+    return render(
+        request,    # HttpRequest객체
+        "polls/list.html",  # template 파일 경로
+        {"question_list" : q_list}   # template에게 전달할 값, context value
+    )
+
+
+##########################################
+# 개별 설문 page로 이동하는 view
+## 설문 질문 id를 받아서 그 질문에 대해 보기를 선택할 수 있는 page를 응답.
+# url : polls/vote_form/질문_id
+#   ex) polls/vote_form/2
+# view func : vote_form
+# template : polls/vote_form.html
+
+def vote_form(request, question_id):
+    # question_id : path parameter로 넘어온 값을 받을 변수
+    question = Question.objects.get(pk=question_id)
+
+    return render(request, "polls/vote_form.html", {"question":question})
+
+
+##########################################
+# 투표 처리
+## choice_id 받아서 votes를 1 증가
+# - 응답 : 정상처리 - 투표결과를 응답, 질문 - 보기 (choice_text, votes)
+#         요청 parameter 검증 실패(아무것도 선택안하고 요청) - vote_form.html 이동 (다시 투표)
+# url : polls/vote
+# view func : vote
+# 응답 : 정상 - vote_result.html,
+#        오류 - vote_form.html
+
+# view func에서 요청 parameter 값 조회
+## GET : request.GET - 요청 parameter가 dict에 담겨서 제공
+## POST : request.POST - 요청 parameter가 dict에 담겨서 제공
+
+def vote(request):
+    # 1. 요청 parameter 조회
+    # question_id = request.POST("question_id") # 없으면 Exception
+    question_id = request.POST.get("question_id")    # 없으면 None
+    choice_id = request.POST.get("choice")
+    # 2. 요청 parameter 검증 -> choice가 선택 되었는지 여부
+    if choice_id:   # 선택이 된 경우 (정상)
+        # votes를 1증가
+        choice = Choice.objects.get(pk=choice_id)
+        choice.votes += 1
+        choice.save()
+        # # 응답 page 이동 -> Question 객체
+        # question = Question.objects.get(pk = question_id)
+        # return render(request, "polls/vote_result.html", {"question" : question})
+    
+        # vote_result를 요청하도록 응답 - http응답 상태코드 : 302, 이동할 url 선언 ==> redirect()
+        response = redirect(f"/polls/vote_result/{question_id}")
+        print(type(response))
+        return response
+
+    else:   # 선택 안된 경우 (예외)
+        question = Question.objects.get(pk=question_id)
+        return render(
+            request, 
+            "polls/vote_form.html", 
+            {"question" : question, "error_message" : "선택을하셔야죵,,?"}
+            )
+    
+
+##########################################
+# question_id를 받아서 그 질문의 투표 결과를 응답하는 view
+# url : polls/vote_reuslt/질문_id
+# view : vote_result
+# 응답 template : polls/vote_result.html
+
+def vote_result(request, question_id):
+    question = Question.objects.get(pk = question_id)
+    return render(request, "polls/vote_result.html", {"question":question})
