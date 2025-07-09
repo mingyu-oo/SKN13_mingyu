@@ -1,0 +1,15 @@
+{% extends "layouts/main_layout.html" %}
+{% block contents %}
+    <h1>설문 앱이에용 ><</h1>
+    목록에 다양한 설문 문항이 있어욥
+{% endblock contents %}
+
+
+{% comment %}
+url-pattern
+path("", views.home, name="home")
+def home(request):
+    return render(request, "home.html")
+    단순히 template 실행결과를 응답하는 View 
+    ==> TeamplateView를 사용하면 View func를 만들 필요 없음.
+{% endcomment %}

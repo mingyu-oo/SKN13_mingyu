@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>설문 목록</title>
+{% extends "layouts/main_layout.html" %}
+{% block title %}설문 목록{%endblock title%}
+{% block contents %}
+
 </head>
 <body>
     <h1>설문 목록</h1>
     <!-- Context Value를 출력 -->
     <!-- {{question_list}} -->
     {% for question in question_list%}
-    <a href="/polls/vote_form/{{question.pk}}">
-        {{question.pk}}. {{question.question_text}}
+    <!-- <a href = "/polls/vote_form/{{question.pk}}"> -->
+    <a href="{% url 'polls:vote_form' question.pk %}">
+        {{question.pk}}. {{question.question_text | truncatewords:4}}
     </a><br>
-        
-     {%endfor%}
-</body>
-</html>
+    {%empty%}
+        <b>등록된 설문이 없습니당.</b>
+    {%endfor%}
+{%endblock contents%}

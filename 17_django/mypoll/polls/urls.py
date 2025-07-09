@@ -4,6 +4,10 @@
 from django.urls import path
 from . import views
 
+app_name = "polls"
+# url mapping 설정으로 호출할 때 사용할 접두어 설정
+## welcome 호출 -> polls:welcome
+
 urlpatterns = [
     path("welcome", views.welcome_poll, name="welcome"),
     path("list", views.list, name="list"),
@@ -13,6 +17,10 @@ urlpatterns = [
     ## <type:받을 view parameter 이름>
     path("vote", views.vote, name="vote"),
     # http://127.0.0.1:8000/polls/vote -> 투표처리
-    path("vote_result/<int:question_id>", views.vote_result, name="view_result")
+    path("vote_result/<int:question_id>", views.vote_result, name="vote_result"),
     # http://127.0.0.1:8000/polls/vote_result/1
+    path("vote_create", views.vote_create, name="vote_create"),
+    # http://127.0.0.1:8000/polls/vote_create
+    path("", views.list, name="polls_main"),
+    # http://127.0.0.1:8000/polls/
 ]

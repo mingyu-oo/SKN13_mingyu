@@ -3,6 +3,7 @@
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse     # urls.py에 path이름으로 설정된 url을 조회하는 메소드
 from datetime import datetime
 from .models import Question, Choice # 모델 클래스들 import
 
@@ -30,7 +31,7 @@ def welcome_poll(request):
     response = render(
         request,                # HttpRequest
         "polls/welcome.html",   # template의 경로 (app_directory/templates 이후 경로)
-        {"now" : now}           # view가 template에 전달할 값들을 directory에 name : value로 묶어서 전달
+        {"now" : now, "name" : "우망구"}           # view가 template에 전달할 값들을 directory에 name : value로 묶어서 전달
                                 # => context value라고 함.
     )
     # response : HttpResponse(polls/welcome.html 처리 내용)
@@ -103,7 +104,10 @@ def vote(request):
         # return render(request, "polls/vote_result.html", {"question" : question})
     
         # vote_result를 요청하도록 응답 - http응답 상태코드 : 302, 이동할 url 선언 ==> redirect()
-        response = redirect(f"/polls/vote_result/{question_id}")
+        # response = redirect(f"/polls/vote_result/{question_id}")
+        url = reverse("polls:vote_result", args=[question_id])  # app_name이 polls인 urls.py에서 name
+        print("reverse()가 생성한 url :", type(url), url)
+        response = redirect(url)
         print(type(response))
         return response
 
@@ -113,15 +117,49 @@ def vote(request):
             request, 
             "polls/vote_form.html", 
             {"question" : question, "error_message" : "선택을하셔야죵,,?"}
-            )
+        )
     
 
 ##########################################
 # question_id를 받아서 그 질문의 투표 결과를 응답하는 view
 # url : polls/vote_reuslt/질문_id
-# view : vote_result
+# view func : vote_result
 # 응답 template : polls/vote_result.html
 
 def vote_result(request, question_id):
     question = Question.objects.get(pk = question_id)
     return render(request, "polls/vote_result.html", {"question":question})
+
+
+##########################################
+# 설문 질문 등록 (admin에서 안하고도)
+# url : polls/vote_create
+# view func : vote_create
+## Get 방식 요청 : 등록 폼을 제공
+## POST 방식 요청 : 등록 처리
+# 응답 template
+## Get 방식 요청 : polls/vote_create.html
+## Post 방식 요청 : list로 이동 -> redirect 방식
+
+# HTTP 요청 방식 조회 - HttpRequest.method => "GET", "POST"
+
+def vote_create(request):
+    http_method = request.method
+    if http_method == "GET":
+        return render(request, "polls/vote_create.html")
+    elif http_method == "POST":
+        # 요청 parameter 읽기 - 질문, 보기들
+        question_text = request.POST.get("question_text")
+        # 같은 이름으로 여러 개의 값이 전달된 경우 .getlist("요청 parameter") -> list
+        choice_list = request.POST.getlist("choice_text")
+        
+        # DB에 저장
+        q = Question(question_text=question_text)
+        q.save()
+        for choice_text in choice_list:
+            c = Choice(choice_text=choice_text, question = q)
+            c.save()
+
+        # 응답 - list로 redirect 방식으로 이동
+        # return redirect("/polls/list")
+        return redirect(reverse("polls:list"))
