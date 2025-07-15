@@ -1,7 +1,14 @@
+<!-- mypoll/templates/home.html -->
 {% extends "layouts/main_layout.html" %}
+{% load static %}
 {% block contents %}
-    <h1>설문 앱이에용 ><</h1>
-    목록에 다양한 설문 문항이 있어욥
+    <h1>📝설문 앱이에용😎</h1>
+    <h4>🤯목록에 다양한 설문 문항이 있어욥👽</h4>
+    <p>
+        <!-- <img src= "static/imgs/survey.jpg"> -->
+        <img src = "{% static 'imgs/survey.jpg' %}"
+        {# static tag : STATIC_URL을 앞에 붙여서 경로를 생성. #}
+    </p>
 {% endblock contents %}
 
 

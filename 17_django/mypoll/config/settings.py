@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls',
+    'account',
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -114,12 +116,44 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images)들을 요청할 때 사용할 url의 시작.
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
+# app/static 이외의 경로 static 파일들이 있을 경우 그 디렉토리를 설정.
+## 요청 : /static/xxxxxx -> static_url의 설정 url로 요청
+# - 개발 서버 기준
+#   - STATICFFILES_DIRS 의 경로에서 찾음
+#   - 없으면 app/static 경로에서 찾음
+
+STATIC_ROOT = BASE_DIR / 'static'
+# python manage.py collectstatic 실행하면 모든 static file을 STATIC_ROOT 경로에 모아줌.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+#############################
+# 사용자 정의 User model 등록
+#############################
+AUTH_USER_MODEL = "account.User"    # AbstractUser class 등록.
+
+#############################
+# login 관련 설정
+#############################
+# 로그인 하지않은 사용자가 @login_required인 View를 호출했을 때 이동할 url 지정.
+LOGIN_URL = "/account/login"
+
+# MEDIA 설정 (파일 업로드)
+#####################################
+# 업로드 파일들을 저장할 root 경로 설정
+MEDIA_ROOT = BASE_DIR / "media"
+
+# Client가 업로드된 파일을 요청할 때 사용할 (시작)url 설정
+MEDIA_URL = "/media/"
+
+# "/media/xxxxx" url로 요청하면 MEDIA_ROOT 경로에서 찾아서 응답.
